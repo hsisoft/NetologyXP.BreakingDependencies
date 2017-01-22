@@ -86,22 +86,23 @@ class TaxCalculator {
 			console.log(`----Have a nice day!-----`);
 		}
     }
+}
 
-	calculatePriceFor(state, item) {
-		var result = null;
-		if (items[item].type === "PreparedFood") {
-			result = ( 1 + base(state) ) * items[item].price;
-		}
-		else {
-			result = calc(state, items[item].type) * items[item].price + items[item].price;
-		}
-		console.log(`${item}: $${result.toFixed(2)}`);
+function calculatePriceFor(state, item) {
+	var result = null;
+	if (items[item].type === "PreparedFood") {
+		result = ( 1 + base(state) ) * items[item].price;
 	}
+	else {
+		result = calc(state, items[item].type) * items[item].price + items[item].price;
+	}
+	console.log(`${item}: $${result.toFixed(2)}`);
+	return result;
 }
 
 //############################
 //Production - код:
-calculateTaxes();
+//calculateTaxes();
 
 //############################
 //Тесты:
@@ -122,7 +123,7 @@ function getTestSelectedState() {
 }
 
 //Раскомментируйте следующую строчку для запуска тестов:
-//runAllTests (tests);
+runAllTests (tests);
 
 //############################
 //Код ниже этой строчки не надо менять для выполнения домашней работы
