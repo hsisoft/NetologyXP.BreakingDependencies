@@ -56,6 +56,10 @@ function isTesting() {
 }
 
 class TaxCalculator {
+	constructor(isTesting) {
+		this._isTesting = isTesting;
+	}
+
     // У этой функции нелья менять интерфейс
     // Но можно менять содержимое
     calculateTax() {
