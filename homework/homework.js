@@ -51,15 +51,7 @@ function calc(state, itemType) {
 	return (itemTypes[itemType][state] === "") ? 0 : base(state) + itemTypes[itemType][state];
 }
 
-function isTesting() {
-    return true;
-}
-
 class TaxCalculator {
-	constructor(isTesting) {
-		this._isTesting = isTesting;
-	}
-
     // У этой функции нелья менять интерфейс
     // Но можно менять содержимое
     calculateTax() {
@@ -72,17 +64,6 @@ class TaxCalculator {
 			calculatePriceFor(state, item, false);
 		}
 		textOut(`----Have a nice day!-----`);
-		if (isTesting()) {
-			// testing
-			textOut(`----Testing section starts!-----`);
-			var testCasesCount = getTestSelectedItem().length;
-			for (var i = 0; i < testCasesCount; i++) {
-				var state = getTestSelectedState()[i];
-				var item = getTestSelectedItem()[i];
-				calculatePriceFor(state, item, false);
-			}
-			textOut(`----Testing section completed!-----`);
-		}
     }
 }
 
@@ -112,14 +93,6 @@ var tests = [
     () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("California", "amoxicillin", true)),
     () => assertEquals(2 * (1 + 0.0635), calculatePriceFor("Connecticut", "hamburger", true)),
 ];
-
-function getTestSelectedItem() {
-	return ["eggs", "coca-cola", "amoxicillin", "amoxicillin", "hamburger"];
-}
-
-function getTestSelectedState() {
-	return ["Alabama", "Arkansas", "Alaska", "California", "Connecticut"];
-}
 
 //Раскомментируйте следующую строчку для запуска тестов:
 runAllTests (tests);
