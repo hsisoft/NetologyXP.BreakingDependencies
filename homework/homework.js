@@ -56,6 +56,10 @@ function calc(state, itemType) {
     return base(state) + itemTypeTaxModifier[state];
 }
 
+function isTesting() {
+    return true;
+}
+
 class TaxCalculator {
     // У этой функции нелья менять интерфейс
     // Но можно менять содержимое
