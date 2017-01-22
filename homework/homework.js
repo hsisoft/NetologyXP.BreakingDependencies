@@ -65,16 +65,16 @@ class TaxCalculator {
     // Но можно менять содержимое
     calculateTax() {
         if (isTesting()) {
-            // testing
-			var ordersCount = getOrdersCount();
-			var state = getSelectedState();
-			console.log(`----------${state}-----------`);
-			for (var i = 0; i < ordersCount; i++) {
-				var item = getSelectedItem();
+			// testing
+			var testCasesCount = getTestSelectedItem().length;
+			for (var i = 0; i < testCasesCount; i++) {
+				var ordersCount = getTestOrdersCount()[i];
+				var state = getTestSelectedState()[i];
+				var item = getTestSelectedItem()[i];
 				this.calculatePriceFor(state, item);
+				}
+				console.log(`----Have a nice day!-----`);
 			}
-			console.log(`----Have a nice day!-----`);
-        }
         else {
             // prod
 			var ordersCount = getOrdersCount();
