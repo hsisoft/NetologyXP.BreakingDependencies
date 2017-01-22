@@ -68,7 +68,6 @@ class TaxCalculator {
 			// testing
 			var testCasesCount = getTestSelectedItem().length;
 			for (var i = 0; i < testCasesCount; i++) {
-				var ordersCount = getTestOrdersCount()[i];
 				var state = getTestSelectedState()[i];
 				var item = getTestSelectedItem()[i];
 				this.calculatePriceFor(state, item);
@@ -120,10 +119,6 @@ function getTestSelectedItem() {
 
 function getTestSelectedState() {
 	return ["Alabama", "Arkansas", "Alaska", "California", "Connecticut"];
-}
-
-function getTestOrdersCount() {
-	return [3.0, 0.4, 6.7, 6.7, 2];
 }
 
 //Раскомментируйте следующую строчку для запуска тестов:
