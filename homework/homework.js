@@ -96,6 +96,18 @@ var tests = [
     () => assertEquals(2 * (1 + 0.0635), calculatePriceFor("Connecticut", "hamburger")),
 ];
 
+function getTestSelectedItem() {
+	return ["eggs", "coca-cola", "amoxicillin", "amoxicillin", "hamburger"];
+}
+
+function getTestSelectedState() {
+	return ["Alabama", "Arkansas", "Alaska", "California", "Connecticut"];
+}
+
+function getTestOrdersCount() {
+	return [3.0, 0.4, 6.7, 6.7, 2];
+}
+
 //Раскомментируйте следующую строчку для запуска тестов:
 //runAllTests (tests);
 
