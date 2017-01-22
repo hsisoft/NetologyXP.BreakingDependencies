@@ -67,22 +67,22 @@ class TaxCalculator {
 		// prod
 		var ordersCount = getOrdersCount();
 		var state = getSelectedState();
-		console.log(`----------${state}-----------`);
+		textOut(`----------${state}-----------`);
 		for (var i = 0; i < ordersCount; i++) {
 			var item = getSelectedItem();
 			calculatePriceFor(state, item, false);
 		}
-		console.log(`----Have a nice day!-----`);
+		textOut(`----Have a nice day!-----`);
 		if (isTesting()) {
 			// testing
-			console.log(`----Testing section starts!-----`);
+			textOut(`----Testing section starts!-----`);
 			var testCasesCount = getTestSelectedItem().length;
 			for (var i = 0; i < testCasesCount; i++) {
 				var state = getTestSelectedState()[i];
 				var item = getTestSelectedItem()[i];
 				calculatePriceFor(state, item, false);
 			}
-			console.log(`----Testing section completed!-----`);
+			textOut(`----Testing section completed!-----`);
 		}
     }
 }
@@ -91,9 +91,13 @@ function calculatePriceFor(state, item, isTesting) {
 	var result = null;
 	result = (items[item].type === "PreparedFood") ? ( 1 + base(state) ) * items[item].price : calc(state, items[item].type) * items[item].price + items[item].price;
 	if (!isTesting) {
-		console.log(`${item}: $${result.toFixed(2)}`);
+		textOut(`${item}: $${result.toFixed(2)}`);
 	}
 	return result;
+}
+
+function textOut(text){
+	console.log(text);
 }
 
 //############################
