@@ -64,54 +64,50 @@ class TaxCalculator {
     // У этой функции нелья менять интерфейс
     // Но можно менять содержимое
     calculateTax() {
-        if (isTesting()) {
+		// prod
+		var ordersCount = getOrdersCount();
+		var state = getSelectedState();
+		console.log(`----------${state}-----------`);
+		for (var i = 0; i < ordersCount; i++) {
+			var item = getSelectedItem();
+			calculatePriceFor(state, item, false);
+		}
+		console.log(`----Have a nice day!-----`);
+		if (isTesting()) {
 			// testing
+			console.log(`----Testing section starts!-----`);
 			var testCasesCount = getTestSelectedItem().length;
 			for (var i = 0; i < testCasesCount; i++) {
 				var state = getTestSelectedState()[i];
 				var item = getTestSelectedItem()[i];
-				this.calculatePriceFor(state, item);
-				}
-				console.log(`----Have a nice day!-----`);
+				calculatePriceFor(state, item, false);
 			}
-        else {
-            // prod
-			var ordersCount = getOrdersCount();
-			var state = getSelectedState();
-			console.log(`----------${state}-----------`);
-			for (var i = 0; i < ordersCount; i++) {
-				var item = getSelectedItem();
-				this.calculatePriceFor(state, item);
-			}
-			console.log(`----Have a nice day!-----`);
+			console.log(`----Testing section completed!-----`);
 		}
     }
 }
 
-function calculatePriceFor(state, item) {
+function calculatePriceFor(state, item, isTesting) {
 	var result = null;
-	if (items[item].type === "PreparedFood") {
-		result = ( 1 + base(state) ) * items[item].price;
+	result = (items[item].type === "PreparedFood") ? ( 1 + base(state) ) * items[item].price : calc(state, items[item].type) * items[item].price + items[item].price;
+	if (!isTesting) {
+		console.log(`${item}: $${result.toFixed(2)}`);
 	}
-	else {
-		result = calc(state, items[item].type) * items[item].price + items[item].price;
-	}
-	console.log(`${item}: $${result.toFixed(2)}`);
 	return result;
 }
 
 //############################
 //Production - код:
-//calculateTaxes();
+calculateTaxes();
 
 //############################
 //Тесты:
 var tests = [
-    () => assertEquals(3.0 * (1 + 0.04), calculatePriceFor("Alabama", "eggs")),
-    () => assertEquals(0.4 * (1 + 0.015 + 0.065), calculatePriceFor("Arkansas", "coca-cola")),
-    () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("Alaska", "amoxicillin")),
-    () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("California", "amoxicillin")),
-    () => assertEquals(2 * (1 + 0.0635), calculatePriceFor("Connecticut", "hamburger")),
+    () => assertEquals(3.0 * (1 + 0.04), calculatePriceFor("Alabama", "eggs", true)),
+    () => assertEquals(0.4 * (1 + 0.015 + 0.065), calculatePriceFor("Arkansas", "coca-cola", true)),
+    () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("Alaska", "amoxicillin", true)),
+    () => assertEquals(6.7 * (1 + 0.0), calculatePriceFor("California", "amoxicillin", true)),
+    () => assertEquals(2 * (1 + 0.0635), calculatePriceFor("Connecticut", "hamburger", true)),
 ];
 
 function getTestSelectedItem() {
