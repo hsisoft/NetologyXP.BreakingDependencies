@@ -48,12 +48,7 @@ function base(state) {
 }
 
 function calc(state, itemType) {
-
-    var itemTypeTaxModifier = itemTypes[itemType];
-    if (itemTypeTaxModifier[state] === "") {
-        return 0;
-    }
-    return base(state) + itemTypeTaxModifier[state];
+	return (itemTypes[itemType][state] === "") ? 0 : base(state) + itemTypes[itemType][state];
 }
 
 function isTesting() {
