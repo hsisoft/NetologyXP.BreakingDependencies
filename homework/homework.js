@@ -76,8 +76,12 @@ class TaxCalculator {
 	}
 }
 
-function calculatePriceFor(state, item) {
+function calculatePriceFor_Old(state, item) {
 	return (items_old[item].type === "PreparedFood") ? ( 1 + getBaseTax(state) ) * items_old[item].price : calc(state, items_old[item].type) * items_old[item].price + items_old[item].price;
+}
+
+function calculatePriceFor(state, item) {
+	return (1 + getTax(state, items[item].type)) * items[item].price;
 }
 
 function textOut(text) {
