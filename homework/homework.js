@@ -9,56 +9,6 @@ function getTax(state, itemType) {
 	return (taxes[state][itemType] === "") ? 0 : taxes[state].BaseTax + taxes[state][itemType];
 }
 
-var items_old = {
-	"milk": {price: 5.5, type: "Groceries"},
-	"eggs": {price: 3.0, type: "Groceries"},
-	"coca-cola": {price: 0.4, type: "Groceries"},
-	"amoxicillin": {price: 6.7, type: "Groceries"},
-	"aspirin": {price: 0.2, type: "PrescriptionDrug"},
-	"marijuana": {price: 1.4, type: "PrescriptionDrug"},
-	"hamburger": {price: 2, type: "PreparedFood"},
-	"ceasar salad": {price: 4.2, type: "PreparedFood"},
-};
-
-var itemTypes_old =
-	{
-		"Groceries": {
-			"Alabama": 0,
-			"Alaska": 0,
-			"Arizona": "",
-			"Arkansas": 0.015,
-			"California": "",
-			"Colorado": "",
-			"Connecticut": ""
-		},
-		"PrescriptionDrug": {
-			"Alabama": "",
-			"Alaska": 0,
-			"Arizona": "",
-			"Arkansas": "",
-			"California": "",
-			"Colorado": "",
-			"Connecticut": ""
-		}
-	};
-
-function getBaseTax(state) {
-	var taxes = {
-		"Alabama": 0.04,
-		"Alaska": 0,
-		"Arizona": 0.056,
-		"Arkansas": 0.065,
-		"California": 0.075,
-		"Colorado": 0.029,
-		"Connecticut": 0.0635
-	};
-	return taxes[state];
-}
-
-function calc(state, itemType) {
-	return (itemTypes_old[itemType][state] === "") ? 0 : getBaseTax(state) + itemTypes_old[itemType][state];
-}
-
 class TaxCalculator {
 	// У этой функции нелья менять интерфейс
 	// Но можно менять содержимое
