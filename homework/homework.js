@@ -1,7 +1,8 @@
 "use strict";
 
 // Этот код можно менять как угодно
-var items = {
+
+var items_old = {
 	"milk": {price: 5.5, type: "Groceries"},
 	"eggs": {price: 3.0, type: "Groceries"},
 	"coca-cola": {price: 0.4, type: "Groceries"},
@@ -12,7 +13,7 @@ var items = {
 	"ceasar salad": {price: 4.2, type: "PreparedFood"},
 };
 
-var itemTypes =
+var itemTypes_old =
 	{
 		"Groceries": {
 			"Alabama": 0,
@@ -48,7 +49,7 @@ function getBaseTax(state) {
 }
 
 function calc(state, itemType) {
-	return (itemTypes[itemType][state] === "") ? 0 : getBaseTax(state) + itemTypes[itemType][state];
+	return (itemTypes_old[itemType][state] === "") ? 0 : getBaseTax(state) + itemTypes_old[itemType][state];
 }
 
 class TaxCalculator {
@@ -70,7 +71,7 @@ class TaxCalculator {
 
 function calculatePriceFor(state, item) {
 	var result = null;
-	result = (items[item].type === "PreparedFood") ? ( 1 + getBaseTax(state) ) * items[item].price : calc(state, items[item].type) * items[item].price + items[item].price;
+	result = (items_old[item].type === "PreparedFood") ? ( 1 + getBaseTax(state) ) * items_old[item].price : calc(state, items_old[item].type) * items_old[item].price + items_old[item].price;
 	return result;
 }
 
