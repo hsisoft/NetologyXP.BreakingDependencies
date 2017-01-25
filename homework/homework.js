@@ -2,8 +2,8 @@
 
 // Этот код можно менять как угодно
 
-var items = require('./items.json');
-var taxes = require('./taxes.json');
+let items = require('./items.json');
+let taxes = require('./taxes.json');
 
 function getTax(state, itemType) {
 	return (taxes[state][itemType] === "") ? 0 : taxes[state].BaseTax + taxes[state][itemType];
@@ -14,12 +14,12 @@ class TaxCalculator {
 	// Но можно менять содержимое
 	calculateTax() {
 		// prod
-		var ordersCount = getOrdersCount();
-		var state = getSelectedState();
+		let ordersCount = getOrdersCount();
+		let state = getSelectedState();
 		textOut(`----------${state}-----------`);
-		for (var i = 0; i < ordersCount; i++) {
-			var item = getSelectedItem();
-			var result = calculatePriceFor(state, item);
+		for (let i = 0; i < ordersCount; i++) {
+			let item = getSelectedItem();
+			let result = calculatePriceFor(state, item);
 			textOut(`${item}: $${result.toFixed(2)}`);
 		}
 		textOut(`----Have a nice day!-----`);
@@ -49,7 +49,7 @@ var tests = [
 ];
 
 //Раскомментируйте следующую строчку для запуска тестов:
-runAllTests(tests);
+//runAllTests(tests);
 
 //############################
 //Код ниже этой строчки не надо менять для выполнения домашней работы
