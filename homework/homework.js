@@ -2,6 +2,9 @@
 
 // Этот код можно менять как угодно
 
+var items = require('./items.json');
+var taxes = require('./taxes.json');
+
 var items_old = {
 	"milk": {price: 5.5, type: "Groceries"},
 	"eggs": {price: 3.0, type: "Groceries"},
@@ -70,9 +73,7 @@ class TaxCalculator {
 }
 
 function calculatePriceFor(state, item) {
-	var result = null;
-	result = (items_old[item].type === "PreparedFood") ? ( 1 + getBaseTax(state) ) * items_old[item].price : calc(state, items_old[item].type) * items_old[item].price + items_old[item].price;
-	return result;
+	return (items_old[item].type === "PreparedFood") ? ( 1 + getBaseTax(state) ) * items_old[item].price : calc(state, items_old[item].type) * items_old[item].price + items_old[item].price;
 }
 
 function textOut(text) {
