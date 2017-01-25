@@ -5,6 +5,10 @@
 var items = require('./items.json');
 var taxes = require('./taxes.json');
 
+function getTax(state, itemType) {
+	return (taxes[state][itemType] === "") ? 0 : taxes[state].BaseTax + taxes[state][itemType];
+}
+
 var items_old = {
 	"milk": {price: 5.5, type: "Groceries"},
 	"eggs": {price: 3.0, type: "Groceries"},
